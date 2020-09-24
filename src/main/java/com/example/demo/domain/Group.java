@@ -6,17 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "trainers")
-public class Trainer {
-    @Id
-    @GeneratedValue
+public class Group {
     private Long id;
     private String name;
-    private Boolean isGrouped;
+    private List<Trainee> traineeList;
+    private List<Trainer> trainerList;
 }

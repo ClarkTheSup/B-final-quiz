@@ -1,7 +1,9 @@
 package com.example.demo.util;
 
+import com.example.demo.domain.Group;
 import com.example.demo.domain.Trainee;
 import com.example.demo.domain.Trainer;
+import com.example.demo.dto.GroupDto;
 import com.example.demo.dto.TraineeDto;
 import com.example.demo.dto.TrainerDto;
 import org.springframework.stereotype.Component;

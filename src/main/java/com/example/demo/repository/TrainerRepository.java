@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface TrainerRepository extends CrudRepository<Trainer, Long> {
     List<Trainer> findTrainersByIsGrouped(Boolean grouped);
+
+    @Override
+    List<Trainer> findAll();
 }

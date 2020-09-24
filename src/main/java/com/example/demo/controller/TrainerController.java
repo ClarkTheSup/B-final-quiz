@@ -23,7 +23,6 @@ public class TrainerController {
         return trainerService.getTrainers(grouped);
     }
 
-
     @PostMapping("/trainers")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTrainer(@RequestBody @Valid TrainerDto trainerDto) {
