@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -16,5 +17,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class TrainerDto {
     private Long id;
+    @NotNull(message = "name不能为空")
     private String name;
 }

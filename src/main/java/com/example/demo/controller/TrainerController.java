@@ -2,13 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.TraineeDto;
 import com.example.demo.dto.TrainerDto;
-import com.example.demo.service.TraineeService;
 import com.example.demo.service.TrainerService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,5 +21,12 @@ public class TrainerController {
     @GetMapping("/trainers")
     public List<TrainerDto> getTrainer(@RequestParam(defaultValue = "true") Boolean grouped) {
         return trainerService.getTrainers(grouped);
+    }
+
+
+    @PostMapping("/trainers")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTrainer(@RequestBody @Valid TrainerDto trainerDto) {
+        trainerService.createTrainer(trainerDto);
     }
 }

@@ -32,4 +32,8 @@ public class TrainerService {
                 .collect(Collectors.toList());
         return trainerDtoList;
     }
+
+    public void createTrainer(TrainerDto trainerDto) {
+        trainerRepository.save(dtoMapping.trainerTransform(trainerDto));
+    }
 }

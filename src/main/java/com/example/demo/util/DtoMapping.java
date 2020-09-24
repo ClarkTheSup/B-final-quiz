@@ -15,6 +15,7 @@ public class DtoMapping {
                 .email(traineeDto.getEmail())
                 .office(traineeDto.getOffice())
                 .zoomId(traineeDto.getZoomId())
+                .isGrouped(false)
                 .build();
     }
 
@@ -32,6 +33,7 @@ public class DtoMapping {
         return Trainer.builder()
                 .id(trainerDto.getId())
                 .name(trainerDto.getName())
+                .isGrouped(false)
                 .build();
     }
 
