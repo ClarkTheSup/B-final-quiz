@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Error> handleValidationViolation(Exception e) {
         Error error = Error.builder()
                 .message(e.getMessage())
@@ -20,5 +20,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseEntity<Error> handleUserNotFound(DataNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getError());
+    }
+
+    @ExceptionHandler(NoGroupException.class)
+    public ResponseEntity<Error> handleNoGroupException(NoGroupException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getError());
     }
 }

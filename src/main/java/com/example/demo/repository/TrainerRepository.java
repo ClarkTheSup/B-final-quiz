@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.domain.Trainee;
 import com.example.demo.domain.Trainer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,6 @@ public interface TrainerRepository extends CrudRepository<Trainer, Long> {
 
     @Override
     List<Trainer> findAll();
+
+    List<Trainer> findAllByGroupId(Long groupId);
 }

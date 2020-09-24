@@ -12,4 +12,6 @@ public interface TraineeRepository extends CrudRepository<Trainee, Long> {
 
     @Override
     List<Trainee> findAll();
+
+    List<Trainee> findAllByGroupId(Long groupId);
 }

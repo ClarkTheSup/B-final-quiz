@@ -19,4 +19,5 @@ public class Trainer {
     private Long id;
     private String name;
     private Boolean isGrouped;
+    private Long groupId;
 }

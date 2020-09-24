@@ -6,10 +6,23 @@ import com.example.demo.domain.Trainer;
 import com.example.demo.dto.GroupDto;
 import com.example.demo.dto.TraineeDto;
 import com.example.demo.dto.TrainerDto;
+import com.example.demo.repository.TraineeRepository;
+import com.example.demo.repository.TrainerRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
 
 @Component
 public class DtoMapping {
+    private TraineeRepository traineeRepository;
+    private TrainerRepository trainerRepository;
+
+    public DtoMapping(TraineeRepository traineeRepository, TrainerRepository trainerRepository) {
+        this.traineeRepository = traineeRepository;
+        this.trainerRepository = trainerRepository;
+    }
+
     public Trainee traineeTransform(TraineeDto traineeDto) {
         return Trainee.builder()
                 .id(traineeDto.getId())
@@ -44,5 +57,18 @@ public class DtoMapping {
                 .id(trainer.getId())
                 .name(trainer.getName())
                 .build();
+    }
+
+    public Group groupTransform(GroupDto groupDto) {
+        return Group.builder().id(groupDto.getId())
+                .name(groupDto.getName())
+                .build();
+    }
+
+    public GroupDto groupDtoTransform(Group group) {
+        List<Trainee> traineeList = this.traineeRepository.findAllByGroupId(group.getId());
+        List<Trainer> trainerList = this.trainerRepository.findAllByGroupId(group.getId());
+        return GroupDto.builder().id(group.getId()).name(group.getName())
+                .traineeList(traineeList).trainerList(trainerList).build();
     }
 }
