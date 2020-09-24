@@ -15,13 +15,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class TraineeDto {
     private Long id;
-    @NotNull
+    @NotNull(message = "name不能为空")
     private String name;
-    @NotNull
+    @NotNull(message = "office不能为空")
     private String office;
-    @NotNull
-    @Email
+    @NotNull(message = "email不能为空")
+    @Email(message = "email格式不正确")
     private String email;
-    @NotNull
+    @NotNull(message = "zoomId不能为空")
     private String zoomId;
 }
