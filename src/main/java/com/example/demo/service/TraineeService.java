@@ -3,7 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.Trainee;
 import com.example.demo.dto.TraineeDto;
 import com.example.demo.exception.Error;
-import com.example.demo.exception.UserNotFoundException;
+import com.example.demo.exception.DataNotFoundException;
 import com.example.demo.repository.TraineeRepository;
 import com.example.demo.util.DtoMapping;
 import org.springframework.stereotype.Service;
@@ -43,11 +43,10 @@ public class TraineeService {
             traineeRepository.deleteById(trainee_id);
         } else {
             Error error = Error.builder()
-                    .message("用户不存在")
+                    .message("删除的数据不存在")
                     .status(404)
                     .build();
-            throw new UserNotFoundException(error);
+            throw new DataNotFoundException(error);
         }
-
     }
 }

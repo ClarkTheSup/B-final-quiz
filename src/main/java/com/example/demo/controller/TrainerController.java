@@ -29,4 +29,10 @@ public class TrainerController {
     public void createTrainer(@RequestBody @Valid TrainerDto trainerDto) {
         trainerService.createTrainer(trainerDto);
     }
+
+    @DeleteMapping("/trainers/{trainer_id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTrainer(@PathVariable Long trainer_id) {
+        trainerService.deleteTrainer(trainer_id);
+    }
 }

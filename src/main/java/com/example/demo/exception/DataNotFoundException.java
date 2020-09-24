@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserNotFoundException extends RuntimeException{
+public class DataNotFoundException extends RuntimeException{
     private Error error;
 }
