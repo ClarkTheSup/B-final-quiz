@@ -41,6 +41,8 @@ public class GroupService {
     }
 
     public List<GroupDto> createGroups() {
+        resetGroup();
+
         List<Trainer> trainerList = this.trainerRepository.findAll();
         List<Trainee> traineeList = this.traineeRepository.findAll();
         int groupSize = trainerList.size()/2;
@@ -84,6 +86,24 @@ public class GroupService {
         groupDtoList.forEach(groupDto -> groupRepository.save(dtoMapping.groupTransform(groupDto)));
 
         return groupDtoList;
+    }
+
+    private void resetGroup() {
+        List<Group> groupList = this.groupRepository.findAll();
+        groupList.forEach(group -> {
+            Long groupId = group.getId();
+            List<Trainee> traineeList = this.traineeRepository.findAllByGroupId(groupId);
+            List<Trainer> trainerList = this.trainerRepository.findAllByGroupId(groupId);
+            traineeList.forEach(trainee -> {
+                trainee.setGroupId(null);
+                trainee.setIsGrouped(false);
+            });
+            trainerList.forEach(trainer -> {
+                trainer.setGroupId(null);
+                trainer.setIsGrouped(false);
+            });
+        });
+        this.groupRepository.deleteAll();
     }
 
 //    public void changeGroupName(int index, String newName) {
