@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.Group;
 import com.example.demo.dto.GroupDto;
 import com.example.demo.service.GroupService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,10 @@ public class GroupController {
     @PostMapping("/groups/auto-grouping")
     public void createGroups() {
         groupService.createGroups();
+    }
+
+    @PatchMapping("/groups/{group_id}")
+    public void renameGroup(@PathVariable Long group_id, @RequestBody String group_name) {
+        groupService.renameGroup(group_id, group_name);
     }
 }

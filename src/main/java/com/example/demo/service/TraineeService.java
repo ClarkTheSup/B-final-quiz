@@ -23,6 +23,12 @@ public class TraineeService {
         traineeRepository.save(Trainee.builder().name("Jack").isGrouped(false).build());
         traineeRepository.save(Trainee.builder().name("Rose").isGrouped(false).build());
         traineeRepository.save(Trainee.builder().name("Mary").isGrouped(false).build());
+        traineeRepository.save(Trainee.builder().name("Bob").isGrouped(false).build());
+        traineeRepository.save(Trainee.builder().name("Chris").isGrouped(false).build());
+        traineeRepository.save(Trainee.builder().name("Json").isGrouped(false).build());
+        traineeRepository.save(Trainee.builder().name("Peter").isGrouped(false).build());
+        traineeRepository.save(Trainee.builder().name("Irving").isGrouped(false).build());
+        traineeRepository.save(Trainee.builder().name("James").isGrouped(false).build());
     }
 
     public List<TraineeDto> getTrainees(boolean grouped) {

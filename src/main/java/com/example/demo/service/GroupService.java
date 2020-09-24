@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -106,13 +107,14 @@ public class GroupService {
         this.groupRepository.deleteAll();
     }
 
-//    public void changeGroupName(int index, String newName) {
-//        List<Group> GroupList = this.getGroupList();
-//        GroupList.forEach((Group -> {
-//            if (Group.getName().equals(newName)) {
-//                throw new RuntimeException();
-//            }
-//        }));
-//        GroupList.get(index).setName(newName);
-//    }
+    public void renameGroup(Long group_id, String group_name) {
+        Optional<Group> optional = this.groupRepository.findById(group_id);
+        if (optional.isPresent()) {
+            Group group = optional.get();
+            group.setName(group_name);
+            this.groupRepository.save(group);
+        }
+        Error error = Error.builder().status(400).message("分组不存在").build();
+        throw new NoGroupException(error);
+    }
 }

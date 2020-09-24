@@ -23,6 +23,10 @@ public class TrainerService {
         trainerRepository.save(Trainer.builder().name("娟姐").isGrouped(false).build());
         trainerRepository.save(Trainer.builder().name("亚峰").isGrouped(false).build());
         trainerRepository.save(Trainer.builder().name("梦秋").isGrouped(false).build());
+        trainerRepository.save(Trainer.builder().name("赵哥").isGrouped(false).build());
+        trainerRepository.save(Trainer.builder().name("沈姐").isGrouped(false).build());
+        trainerRepository.save(Trainer.builder().name("无极").isGrouped(false).build());
+        trainerRepository.save(Trainer.builder().name("陈阳").isGrouped(false).build());
     }
 
     public List<TrainerDto> getTrainers(Boolean grouped) {
