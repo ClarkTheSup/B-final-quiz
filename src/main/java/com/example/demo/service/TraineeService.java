@@ -28,13 +28,13 @@ public class TraineeService {
     public List<TraineeDto> getTrainees(boolean grouped) {
         List<Trainee> traineeList = traineeRepository.findTraineesByIsGrouped(grouped);
 
-        List<TraineeDto> traineeDtoList = traineeList.stream().map(trainee -> dtoMapping.TraineeDtoTransform(trainee))
+        List<TraineeDto> traineeDtoList = traineeList.stream().map(trainee -> dtoMapping.traineeDtoTransform(trainee))
                 .collect(Collectors.toList());
         return traineeDtoList;
     }
 
     public void createTrainee(TraineeDto traineeDto) {
-        traineeRepository.save(dtoMapping.TraineeTransform(traineeDto));
+        traineeRepository.save(dtoMapping.traineeTransform(traineeDto));
     }
 
     public void deleteTrainee(Long trainee_id) {
