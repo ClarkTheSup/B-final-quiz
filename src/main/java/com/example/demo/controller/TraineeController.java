@@ -27,4 +27,10 @@ public class TraineeController {
     public void createTrainee(@RequestBody @Valid TraineeDto traineeDto) {
         traineeService.createTrainee(traineeDto);
     }
+
+    @DeleteMapping("/trainees/{trainee_id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTrainee(@PathVariable Long trainee_id) {
+        traineeService.deleteTrainee(trainee_id);
+    }
 }

@@ -2,11 +2,14 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Trainee;
 import com.example.demo.dto.TraineeDto;
+import com.example.demo.exception.Error;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.repository.TraineeRepository;
 import com.example.demo.util.DtoMapping;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,5 +35,19 @@ public class TraineeService {
 
     public void createTrainee(TraineeDto traineeDto) {
         traineeRepository.save(dtoMapping.TraineeTransform(traineeDto));
+    }
+
+    public void deleteTrainee(Long trainee_id) {
+        Optional<Trainee> trainee = traineeRepository.findById(trainee_id);
+        if (trainee.isPresent()) {
+            traineeRepository.deleteById(trainee_id);
+        } else {
+            Error error = Error.builder()
+                    .message("用户不存在")
+                    .status(404)
+                    .build();
+            throw new UserNotFoundException(error);
+        }
+
     }
 }
