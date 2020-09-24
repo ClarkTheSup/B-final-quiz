@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 @Service
 public class TraineeService {
     private TraineeRepository traineeRepository;
+    private DtoMapping dtoMapping;
 
-    public TraineeService(TraineeRepository traineeRepository) {
+    public TraineeService(TraineeRepository traineeRepository, DtoMapping dtoMapping) {
         this.traineeRepository = traineeRepository;
+        this.dtoMapping = dtoMapping;
         traineeRepository.save(Trainee.builder().name("Jack").isGrouped(false).build());
         traineeRepository.save(Trainee.builder().name("Rose").isGrouped(false).build());
         traineeRepository.save(Trainee.builder().name("Mary").isGrouped(false).build());
@@ -22,9 +24,13 @@ public class TraineeService {
 
     public List<TraineeDto> getTrainees(boolean grouped) {
         List<Trainee> traineeList = traineeRepository.findTraineesByIsGrouped(grouped);
-        DtoMapping dtoMapping = new DtoMapping();
+
         List<TraineeDto> traineeDtoList = traineeList.stream().map(trainee -> dtoMapping.TraineeDtoTransform(trainee))
                 .collect(Collectors.toList());
         return traineeDtoList;
+    }
+
+    public void createTrainee(TraineeDto traineeDto) {
+        traineeRepository.save(dtoMapping.TraineeTransform(traineeDto));
     }
 }

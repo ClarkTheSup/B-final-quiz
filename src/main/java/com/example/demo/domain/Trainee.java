@@ -19,7 +19,10 @@ import javax.persistence.Table;
 public class Trainee {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String name;
     private Boolean isGrouped;
+    private String office;
+    private String email;
+    private String zoomId;
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TraineeRepository extends CrudRepository<Trainee, Integer> {
+public interface TraineeRepository extends CrudRepository<Trainee, Long> {
     List<Trainee> findTraineesByIsGrouped(Boolean grouped);
 }

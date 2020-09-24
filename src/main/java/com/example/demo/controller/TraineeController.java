@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.TraineeDto;
 import com.example.demo.service.TraineeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +18,13 @@ public class TraineeController {
     }
 
     @GetMapping("/trainees")
-    public List<TraineeDto> getTrainees(@RequestParam(defaultValue = "true") boolean grouped) {
+    public List<TraineeDto> getTrainees(@RequestParam(defaultValue = "true") Boolean grouped) {
         return traineeService.getTrainees(grouped);
+    }
+
+    @PostMapping("/trainees")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTrainee(@RequestBody @Valid TraineeDto traineeDto) {
+        traineeService.createTrainee(traineeDto);
     }
 }
